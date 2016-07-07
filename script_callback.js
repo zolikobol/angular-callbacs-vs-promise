@@ -13,12 +13,10 @@ app.service('dataService', function($http) {
 
 app.controller('gitHubDataController', ['$scope','$http','dataService', function($scope, $http, dataService) {
   $scope.username = "globalthemes";
-  dataService.getData($scope , loadData);
+  dataService.getData($scope , function loadData($scope , result){
+    $scope.userData = result;
+    console.log(result);
+    t1 = performance.now();
+    console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.");;
+  });
 }]);
-
-function loadData($scope , result){
-  $scope.userData = result;
-  console.log(result);
-  t1 = performance.now();
-  console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.");;
-}
